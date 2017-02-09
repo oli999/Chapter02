@@ -18,22 +18,30 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //자동 취소 알림 버튼
         Button makeNotiBtn=(Button)
                 findViewById(R.id.makeNotiBtn);
         makeNotiBtn.setOnClickListener(this);
+        //수동 취소 알림 버튼
+        Button makeNotiBtn2=(Button)
+                findViewById(R.id.makeNotiBtn2);
+        makeNotiBtn2.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.makeNotiBtn:
-                makeAutoCancelNoti();
+                makeNoti(true);
+                break;
+            case R.id.makeNotiBtn2:
+                makeNoti(false);
                 break;
         }
     }
 
-    //자동 cancel 되는 알림 띄우기
-    public void makeAutoCancelNoti(){
+    //알림 띄우기
+    public void makeNoti(boolean isAutoCancel){
         // 알림을 클릭했을때 시작시킬 Activity 정보를 가지고 있는 Intent
         // 객체 생성
         Intent intent=new Intent(this, NotiActivity.class);
@@ -53,13 +61,13 @@ public class MainActivity extends AppCompatActivity
                 .setTicker("간단 메세지")
                 .setDefaults(Notification.DEFAULT_SOUND |
                         Notification.DEFAULT_VIBRATE)
-                .setAutoCancel(true)
+                .setAutoCancel(isAutoCancel)
                 .build();
         //알림 메니져 객체의 참조값을 얻어와서
         NotificationManager notiManager=(NotificationManager)
                 getSystemService(Context.NOTIFICATION_SERVICE);
         //알림을 띄운다.
-        notiManager.notify(999, noti);
+        notiManager.notify(AppConstants.NOTI_ID, noti);
     }
 }
 

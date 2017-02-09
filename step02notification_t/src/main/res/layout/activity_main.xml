@@ -13,4 +13,9 @@
         android:layout_height="wrap_content"
         android:text="자동 취소 알림"
         android:id="@+id/makeNotiBtn"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="수동 취소 알림"
+        android:id="@+id/makeNotiBtn2"/>
 </LinearLayout>
