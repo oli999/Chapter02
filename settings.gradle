@@ -1,1 +1,1 @@
-include ':app', ':step01broadcastreceiver_t', ':step02notification_t', ':step03fragment_t', ':step03fragmentexample_t'
+include ':app', ':step01broadcastreceiver_t', ':step02notification_t', ':step03fragment_t', ':step03fragmentexample_t', ':step04viewpager_t', ':step04example_t'
