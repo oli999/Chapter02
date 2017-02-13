@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/step04example_t" />
             <option value="$PROJECT_DIR$/step04viewpager_t" />
             <option value="$PROJECT_DIR$/step05customview_t" />
+            <option value="$PROJECT_DIR$/step05game_t" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

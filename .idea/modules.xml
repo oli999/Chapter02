@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/step04example_t/step04example_t.iml" filepath="$PROJECT_DIR$/step04example_t/step04example_t.iml" />
       <module fileurl="file://$PROJECT_DIR$/step04viewpager_t/step04viewpager_t.iml" filepath="$PROJECT_DIR$/step04viewpager_t/step04viewpager_t.iml" />
       <module fileurl="file://$PROJECT_DIR$/step05customview_t/step05customview_t.iml" filepath="$PROJECT_DIR$/step05customview_t/step05customview_t.iml" />
+      <module fileurl="file://$PROJECT_DIR$/step05game_t/step05game_t.iml" filepath="$PROJECT_DIR$/step05game_t/step05game_t.iml" />
     </modules>
   </component>
 </project>
