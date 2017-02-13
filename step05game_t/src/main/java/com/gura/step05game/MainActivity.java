@@ -1,12 +1,18 @@
 package com.gura.step05game;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+                implements DialogInterface.OnClickListener{
     GameView view;
+    //무음 모드인지 여부
+    boolean isSilentMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         //메뉴 전개자 객체를 이용해서 res/menu/menu_main.xml
         //문서를 전개해서 메뉴를 구성한다.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -46,15 +53,55 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menu_start:
+            case R.id.menu_start: //게임 시작 선택
                 view.startGame();
                 break;
-            case R.id.menu_pause:
+            case R.id.menu_pause: //일시 정지 선택
                 view.pauseGame();
+                break;
+            case R.id.menu_sound: //무음 모드 선택
+                if(isSilentMode){
+                    isSilentMode=false;
+                    item.setTitle("무음모드");
+                }else{
+                    isSilentMode=true;
+                    item.setTitle("효과음 내기");
+                }
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    //효과음을 재생하는 메소드
+    public void playSound(int soundType){
+        if(isSilentMode){
+            return;
+        }
+        Util.SoundManager.getInstance().play(soundType);
+    }
+    //게임이 종료 되었을때 처리
+    public void gameOver(){
+        new AlertDialog.Builder(this)
+                .setMessage("다시 시작 하겠습니까?")
+                .setPositiveButton("예", this)
+                .setNegativeButton("아니요", this)
+                .create()
+                .show();
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        switch (which){
+            case DialogInterface.BUTTON_POSITIVE:
+                //필드 초기화 하고
+                view.clearField();
+                //게임 다시 시작 시키기
+                view.startGame();
+                break;
+            case DialogInterface.BUTTON_NEGATIVE:
+                finish();// 액티비티 종료
+                break;
+        }
     }
 }
 
