@@ -16,6 +16,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //화면 꺼지지 않도록 설정
+        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        Util.keepScreenOn(this);
+
         //GameView 객체 생성해서 참조값을 변수에 담기
         view=new GameView(this);
         //GameView 객체로 화면을 모두 체울수 있도록
